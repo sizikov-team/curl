@@ -11,8 +11,10 @@ DNS Resource Record.
 
 curl features **experimental** support for HTTPS RR.
 
-- The ALPN list from the retrieved HTTPS record is parsed.
+- The ALPN list from the retrieved HTTPS record is parsed
+- The ECH field is stored (when DoH is used)
 - The port number from the HTTPS RR is not used
+- The target name is not used
 - The IP addresses from the HTTPS RR are not used
 
 ## build
