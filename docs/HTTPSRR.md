@@ -55,7 +55,12 @@ can be done in parallel to the regular getaddrinfo() call.
 Because the HTTPS record is then done separately from the A/AAAA record
 retrieval, there is a risk for discrepancies.
 
-## Options
+When building curl using the threaded resolver with HTTPS RR support (using
+c-ares), the `curl -V` output looks exactly like a c-ares resolver build. We
+must introduce a way that allows a user to distinguish between these two build
+setups.
+
+## HTTPS RR Options
 
 Because curl is a low level transfer tool for which users sometimes want
 detailed control, we need to offer options to control HTTPS RR use.
