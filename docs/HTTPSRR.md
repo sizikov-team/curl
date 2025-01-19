@@ -23,8 +23,9 @@ curl features **experimental** support for HTTPS RR.
 
 The list of ALPNs is parsed but may not be completely respected because of
 what the HTTP version preference is set to, which is a problem we are working
-on. Also, getting a HTTP/1.1 ALPN in the HTTPS RR field for a HTTP:// transfer
-should imply switching to HTTPS, HSTS style. Which curl currently does not.
+on. Also, getting an `HTTP/1.1` ALPN in the HTTPS RR field for an HTTP://
+transfer should imply switching to HTTPS, HSTS style. Which curl currently
+does not.
 
 ## DoH
 
