@@ -21,7 +21,7 @@ curl features **experimental** support for HTTPS RR.
 
 ## ALPN
 
-The list of ALPNs is parsed but may not be completely respected because of
+The list of ALPN IDs is parsed but may not be completely respected because of
 what the HTTP version preference is set to, which is a problem we are working
 on. Also, getting an `HTTP/1.1` ALPN in the HTTPS RR field for an HTTP://
 transfer should imply switching to HTTPS, HSTS style. Which curl currently
@@ -55,5 +55,5 @@ retrieval, there is a risk for discrepancies.
 
 ## Options
 
-Because curl is a lowlevel transfer tool for which users sometimes want
+Because curl is a low level transfer tool for which users sometimes want
 detailed control, we need to offer options to control HTTPS RR use.
