@@ -987,6 +987,8 @@ option(USE_HTTPSRR "Enable HTTPS RR support" OFF)
 option(USE_ECH "Enable ECH support" OFF)
 if(USE_ECH)
   if(USE_OPENSSL OR USE_WOLFSSL)
+    # ECH wants HTTPSRR
+    set(USE_HTTPSRR ON)
     # Be sure that the TLS library actually supports ECH.
     if(USE_WOLFSSL)
       curl_openssl_check_symbol_exists("wolfSSL_CTX_GenerateEchConfig" "wolfssl/options.h;wolfssl/ssl.h"
@@ -2099,6 +2101,7 @@ curl_add_if("brotli"        HAVE_BROTLI)
 curl_add_if("gsasl"         USE_GSASL)
 curl_add_if("zstd"          HAVE_ZSTD)
 curl_add_if("AsynchDNS"     USE_ARES OR USE_THREADS_POSIX OR USE_THREADS_WIN32)
+curl_add_if("c-ares-resolve" USE_ARES AND !USE_THREADS_POSIX AND !USE_THREADS_WIN32)
 curl_add_if("IDN"           (HAVE_LIBIDN2 AND HAVE_IDN2_H) OR
                             USE_WIN32_IDN OR
                             USE_APPLE_IDN)
@@ -2129,6 +2132,7 @@ curl_add_if("threadsafe"    HAVE_ATOMIC OR
 curl_add_if("Debug"         ENABLE_DEBUG)
 curl_add_if("TrackMemory"   ENABLE_CURLDEBUG)
 curl_add_if("ECH"           _ssl_enabled AND HAVE_ECH)
+curl_add_if("HTTPSRR"       _ssl_enabled AND USE_HTTPSRR)
 curl_add_if("PSL"           USE_LIBPSL)
 curl_add_if("CAcert"        CURL_CA_EMBED_SET)
 curl_add_if("SSLS-EXPORT"   _ssl_enabled AND USE_SSLS_EXPORT)

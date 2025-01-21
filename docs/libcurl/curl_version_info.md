@@ -171,6 +171,12 @@ interface. (added in 7.10.7)
 
 supports HTTP Brotli content encoding using libbrotlidec (Added in 7.57.0)
 
+## c-ares-resolve
+
+*features* mask bit: non-existent
+
+libcurl was built to use c-ares for regular name resolves (Added in 8.13.0)
+
 ## Debug
 
 *features* mask bit: CURL_VERSION_DEBUG
@@ -225,6 +231,12 @@ HTTP/3 and QUIC support are built-in (Added in 7.66.0)
 
 libcurl was built with support for HTTPS-proxy.
 (Added in 7.52.0)
+
+## HTTPSRR
+
+*features* mask bit: non-existent
+
+libcurl was built with support for HTTPS RR (Added in 8.13.0)
 
 ## IDN
 

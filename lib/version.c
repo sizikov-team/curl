@@ -467,6 +467,9 @@ static const struct feat features_table[] = {
 #ifdef HAVE_BROTLI
   FEATURE("brotli",      NULL,                CURL_VERSION_BROTLI),
 #endif
+#if defined(CURLRES_ARES)
+  FEATURE("c-ares-resolve", NULL,             0),
+#endif
 #ifdef DEBUGBUILD
   FEATURE("Debug",       NULL,                CURL_VERSION_DEBUG),
 #endif
@@ -491,6 +494,9 @@ static const struct feat features_table[] = {
 #if defined(USE_SSL) && !defined(CURL_DISABLE_PROXY) && \
   !defined(CURL_DISABLE_HTTP)
   FEATURE("HTTPS-proxy", https_proxy_present, CURL_VERSION_HTTPS_PROXY),
+#endif
+#if defined(USE_HTTPSRR)
+  FEATURE("HTTPSRR",     NULL,                0),
 #endif
 #if defined(USE_LIBIDN2) || defined(USE_WIN32_IDN) || defined(USE_APPLE_IDN)
   FEATURE("IDN",         idn_present,         CURL_VERSION_IDN),
