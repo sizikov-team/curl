@@ -17,6 +17,8 @@ curl features **experimental** support for HTTPS RR.
 - The target name is not used
 - The IP addresses from the HTTPS RR are not used
 
+`HTTPSRR` is listed as a feature in the `curl -V` output.
+
 ## build
 
     ./configure --enable-httpsrr
@@ -31,34 +33,41 @@ does not.
 
 ## DoH
 
-The DoH code asks for an HTTPS record in addition to the A and AAA records,
-and if an HTTPS RR answer is returned, curl parses it and stores the retrieved
-information.
+When HTTPS RR is enabled in the curl build, The DoH code asks for an HTTPS
+record in addition to the A and AAA records, and if an HTTPS RR answer is
+returned, curl parses it and stores the retrieved information.
 
 ## Non-DoH
 
-If DoH is not used for name resolving, we must provide the ability using the
-regular resolver backends. We use the c-ares DNS library for the HTTPS lookup.
-Version 1.28.0 or later.
+If DoH is not used for name resolving in a HTTPS RR enabled build, we must
+provide the ability using the regular resolver backends. We use the c-ares DNS
+library for the HTTPS RR lookup. Version 1.28.0 or later.
 
 ### c-ares
 
-If curl is built to use the c-ares library for name resolves, it makes a
-request for the HTTPS record in addition to the regular lookup.
+If curl is built to use the c-ares library for name resolves, a HTTPS RR
+enabled build makes a request for the HTTPS RR in addition to the regular
+lookup.
 
 ### Threaded resolver
 
-When built to use the threaded resolver, which is the default, it still needs
-a c-ares installation provided so that a separate request for the HTTPS record
-can be done in parallel to the regular getaddrinfo() call.
+When built to use the threaded resolver, which is the default, a HTTPS RR
+build still needs a c-ares installation provided so that a separate request
+for the HTTPS record can be done in parallel to the regular getaddrinfo()
+call.
 
-Because the HTTPS record is then done separately from the A/AAAA record
-retrieval, there is a risk for discrepancies.
+This is done by specifying both c-ares and threaded resolver to configure:
+
+    ./configure --enble-ares=... --enable-threaded-resolver
+
+Because the HTTPS record is handled separately from the A/AAAA record
+retrieval, by a separate library, there is a small risk for discrepancies.
 
 When building curl using the threaded resolver with HTTPS RR support (using
-c-ares), the `curl -V` output looks exactly like a c-ares resolver build. We
-must introduce a way that allows a user to distinguish between these two build
-setups.
+c-ares), the `curl -V` output looks exactly like a c-ares resolver build.
+
+TODO: We must introduce a way that allows a user to distinguish between these
+two build setups.
 
 ## HTTPS RR Options
 
