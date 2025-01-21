@@ -39,19 +39,19 @@ returned, curl parses it and stores the retrieved information.
 
 ## Non-DoH
 
-If DoH is not used for name resolving in a HTTPS RR enabled build, we must
+If DoH is not used for name resolving in an HTTPS RR enabled build, we must
 provide the ability using the regular resolver backends. We use the c-ares DNS
 library for the HTTPS RR lookup. Version 1.28.0 or later.
 
 ### c-ares
 
-If curl is built to use the c-ares library for name resolves, a HTTPS RR
+If curl is built to use the c-ares library for name resolves, an HTTPS RR
 enabled build makes a request for the HTTPS RR in addition to the regular
 lookup.
 
 ### Threaded resolver
 
-When built to use the threaded resolver, which is the default, a HTTPS RR
+When built to use the threaded resolver, which is the default, an HTTPS RR
 build still needs a c-ares installation provided so that a separate request
 for the HTTPS record can be done in parallel to the regular getaddrinfo()
 call.
