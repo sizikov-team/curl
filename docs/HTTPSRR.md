@@ -19,6 +19,9 @@ curl features **experimental** support for HTTPS RR.
 
 `HTTPSRR` is listed as a feature in the `curl -V` output.
 
+The data extracted from the HTTPS RR is stored in the in-memory DNS cache to
+be reused on subsequent uses of the same hostnames.
+
 ## build
 
     ./configure --enable-httpsrr
