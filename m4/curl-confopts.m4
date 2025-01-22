@@ -604,8 +604,6 @@ AS_HELP_STRING([--disable-ech],[Disable ECH support]),
     *)
       dnl --enable-ech option used
       want_ech="yes"
-      dnl ECH wants HTTPSRR
-      want_httpsrr="yes"
       curl_ech_msg="enabled (--disable-ech)"
       AC_MSG_RESULT([yes])
       ;;

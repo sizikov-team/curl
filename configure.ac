@@ -4816,16 +4816,6 @@ fi
 
 
 dnl *************************************************************
-dnl check whether HTTPSRR support if desired
-dnl
-if test "x$want_httpsrr" != "xno"; then
-  AC_MSG_RESULT([HTTPSRR support is enabled])
-  AC_DEFINE(USE_HTTPSRR, 1, [enable HTTPS RR support])
-  experimental="$experimental HTTPSRR"
-  curl_httpsrr_msg="enabled (--disable-httpsrr)"
-fi
-
-dnl *************************************************************
 dnl check whether ECH support, if desired, is actually available
 dnl
 if test "x$want_ech" != "xno"; then
@@ -4852,10 +4842,23 @@ if test "x$want_ech" != "xno"; then
     AC_DEFINE(USE_ECH, 1, [if ECH support is available])
     AC_MSG_RESULT($ECH_SUPPORT)
     experimental="$experimental ECH"
+    dnl ECH wants HTTPSRR
+    want_httpsrr="yes"
   else
     AC_MSG_ERROR([--enable-ech ignored: No ECH support found])
   fi
 fi
+
+dnl *************************************************************
+dnl check whether HTTPSRR support if desired
+dnl
+if test "x$want_httpsrr" != "xno"; then
+  AC_MSG_RESULT([HTTPSRR support is enabled])
+  AC_DEFINE(USE_HTTPSRR, 1, [enable HTTPS RR support])
+  experimental="$experimental HTTPSRR"
+  curl_httpsrr_msg="enabled (--disable-httpsrr)"
+fi
+
 
 dnl *************************************************************
 dnl check whether OpenSSL (lookalikes) have SSL_set0_wbio
