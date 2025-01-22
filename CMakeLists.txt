@@ -987,8 +987,6 @@ option(USE_HTTPSRR "Enable HTTPS RR support" OFF)
 option(USE_ECH "Enable ECH support" OFF)
 if(USE_ECH)
   if(USE_OPENSSL OR USE_WOLFSSL)
-    # ECH wants HTTPSRR
-    set(USE_HTTPSRR ON)
     # Be sure that the TLS library actually supports ECH.
     if(USE_WOLFSSL)
       curl_openssl_check_symbol_exists("wolfSSL_CTX_GenerateEchConfig" "wolfssl/options.h;wolfssl/ssl.h"
@@ -1006,7 +1004,10 @@ if(USE_ECH)
     if(NOT HAVE_ECH)
       message(FATAL_ERROR "ECH support missing in OpenSSL/BoringSSL/AWS-LC/wolfSSL")
     else()
-      message(STATUS "ECH enabled.")
+      message(STATUS "ECH enabled")
+      # ECH wants HTTPSRR
+      set(USE_HTTPSRR ON)
+      message(STATUS "HTTPSRR enabled")
     endif()
   else()
     message(FATAL_ERROR "ECH requires ECH-enablded OpenSSL, BoringSSL, AWS-LC or wolfSSL")
