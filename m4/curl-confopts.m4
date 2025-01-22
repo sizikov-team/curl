@@ -569,13 +569,8 @@ AS_HELP_STRING([--disable-httpsrr],[Disable HTTPSRR support]),
     *)
       dnl --enable-httpsrr option used
       want_httpsrr="yes"
-      if test "$OPT_HTTPSRR" = "c-ares"; then
-        httpsrr="c-ares "
-      else
-        httpsrr="DoH    "
-      fi
-      curl_httpsrr_msg="$httpsrr (--disable-httpsrr)"
-      AC_MSG_RESULT([yes: $httpsrr])
+      curl_httpsrr_msg="enabled"
+      AC_MSG_RESULT([yes])
       ;;
   esac
 ])
