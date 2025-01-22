@@ -19,6 +19,10 @@ curl features **experimental** support for HTTPS RR.
 
 `HTTPSRR` is listed as a feature in the `curl -V` output.
 
+`c-ares-resolve` is listed as a feature in the `curl -V` output if c-ares is
+used for all name resolves, to make it possible to distinguish from a build
+that uses c-ares only for HTTPSRR.
+
 The data extracted from the HTTPS RR is stored in the in-memory DNS cache to
 be reused on subsequent uses of the same hostnames.
 
@@ -68,9 +72,6 @@ retrieval, by a separate library, there is a small risk for discrepancies.
 
 When building curl using the threaded resolver with HTTPS RR support (using
 c-ares), the `curl -V` output looks exactly like a c-ares resolver build.
-
-TODO: We must introduce a way that allows a user to distinguish between these
-two build setups.
 
 ## HTTPS RR Options
 
